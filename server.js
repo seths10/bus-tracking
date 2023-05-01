@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+app.use(express.static('public'));
+
 let data = [];
 
 app.post('/api/uplink', (req, res) => {
@@ -31,6 +33,10 @@ app.post('/api/uplink', (req, res) => {
 
 app.get('/api/data', (req, res) => {
   res.json(data);
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 const port = process.env.PORT || 3000;
